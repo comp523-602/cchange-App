@@ -34,15 +34,17 @@ export default class Login extends Component {
         'email': this.state.email,
         'password': this.state.password,
       }),
+
       success: function (data, status) {
         console.log(data);
         document.cookie = "token=" + data.token;
         document.cookie = "uname=" + data.user.name;
+        
+        //if charity information is returned from AJAX response
         if(data.charity != null) {
           document.cookie = "cname=" + data.charity.name;        
           document.cookie = "cdesc=" + data.charity.description;
         }
-        
         ReactDOM.render(<Profile/>, document.getElementById("root"));
       }
       

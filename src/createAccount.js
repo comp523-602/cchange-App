@@ -14,6 +14,7 @@ export default class CreateAccount extends Component {
             password: "",
             charityToken: "",
             charityName: "",
+            charityDescription: ""
       };
 
         this.handleUsername = this.handleUsername.bind(this);
@@ -22,7 +23,9 @@ export default class CreateAccount extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCharityToken = this.handleCharityToken.bind(this);
         this.handleCharityName = this.handleCharityName.bind(this);
-  }
+        this.handleCharityDescription = this.handleCharityDescription.bind(this);
+    
+    }
     handleUsername(e) {
       this.setState({username: e.target.value});
     }
@@ -41,6 +44,10 @@ export default class CreateAccount extends Component {
 
     handleCharityName(e) {
       this.setState({charityName: e.target.value});
+    }
+
+    handleCharityDescription(e) {
+      this.setState({charityDescription: e.target.value});
     }
 
     handleSubmit(e) {
@@ -115,7 +122,7 @@ export default class CreateAccount extends Component {
                   <br/>        
                   <input type="text" id="charityNameBox" name = "charityName" placeholder="Charity Name" 
                     value={this.state.charityName} onChange={this.handleCharityName} />
-                  <br/>          
+                  <br/>        
                   <input type="submit" id="btnCreateAcc" value="submit"/>
               </form>
               <a id="linkToLogin" href="#" onClick={this.renderLogin}>Already have an account?</a>

@@ -17,6 +17,7 @@ export default class Profile extends Component {
         this.handleCharityDescription = this.handleCharityDescription.bind(this);
     }
 
+    //3 handle functions are only available to charity accounts
     handleCharityName(e) {
         this.setState({charityName: e.target.value});
     }
@@ -24,7 +25,9 @@ export default class Profile extends Component {
     handleCharityDescription(e) {
         this.setState({charityDescr: e.target.value});
     }
-
+    
+    //AJAX POST request ran after submit button click
+    //to update charity information on the server
     handleChange(e) {
         e.preventDefault();
         $.ajax({
@@ -42,12 +45,17 @@ export default class Profile extends Component {
     }
 
     render() {
+        //cookies are created from the AJAX response
+        //in the login/create account pages
+
         var isCharity = false;
         var info = document.cookie;
         info = info.split(";");
         var token = info[0].substring(7,);
         var name = info[1].substring(7,);
-        if(info[2] != null) {
+
+        //if charity information is returned from AJAX response
+        if(info[2] != null) { 
             isCharity = true;
             var cname = info[2].substring(7,);
             var cdesc = info[3].substring(7,);
