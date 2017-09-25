@@ -26,6 +26,7 @@ export default class Login extends Component {
     console.log("email and password");
     console.log(this.state.email + " " + this.state.password);
     console.log('Attempting to send');
+    
     $.ajax({
       type: "POST",
       url: "//api.cchange.ga/user.login",

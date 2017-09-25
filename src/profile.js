@@ -9,14 +9,17 @@ export default class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            token: "",
+            name: "",
             charityName: "",
             charityDescr: "",
         };
 
         this.handleCharityName = this.handleCharityName.bind(this);        
         this.handleCharityDescription = this.handleCharityDescription.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
-
+    
     //3 handle functions are only available to charity accounts
     handleCharityName(e) {
         this.setState({charityName: e.target.value});
@@ -30,10 +33,13 @@ export default class Profile extends Component {
     //to update charity information on the server
     handleChange(e) {
         e.preventDefault();
+        console.log(this.state.token);
+
         $.ajax({
             type: "POST",
             url: "//api.cchange.ga/charity.edit",
             contentType: 'application/json',
+            headers: { "Authorization":  this.state.token },
             data: JSON.stringify({
               'name': this.state.charityName,
               'description': this.state.charityDescr,
@@ -51,28 +57,28 @@ export default class Profile extends Component {
         var isCharity = false;
         var info = document.cookie;
         info = info.split(";");
-        var token = info[0].substring(7,);
-        var name = info[1].substring(7,);
+        this.state.token = info[0].substring(6,);
+        this.state.name = info[1].substring(7,);
 
         //if charity information is returned from AJAX response
         if(info[2] != null) { 
             isCharity = true;
-            var cname = info[2].substring(7,);
-            var cdesc = info[3].substring(7,);
+            this.state.charityName = info[2].substring(7,);
+            this.state.charityDescr = info[3].substring(7,);
         }
 
         if(isCharity) {
             return(
                 <div className="user">
-                    <p>Welcome back {name}!</p>
-                    <p>Your charity is {cname}</p>
-                    <p>{cdesc}</p>
+                    <p>Welcome back {this.state.name}!</p>
+                    <p>Your charity is {this.state.charityName}</p>
+                    <p>{this.state.charityDescr}</p>
                     <p>Edit your charity's description below</p>
                     <form onSubmit={this.handleChange}>
                         <input type="text" id="changeNameID" placeholder="Edit your charity's name" 
-                            value={this.state.charityName} onChange={this.handleCharityName}/>
+                             onChange={this.handleCharityName}/>
                         <input type="text" id="changeDescID" placeholder="Edit your charity's description" 
-                            value={this.state.charityDescr} onChange={this.handleCharityDescription}/>
+                             onChange={this.handleCharityDescription}/>
                         <input type="submit" value="Update info"/>
                     </form>
                 </div>
@@ -82,7 +88,7 @@ export default class Profile extends Component {
         else {
             return(
                 <div className="user">
-                    <p>Welcome back {name}!</p>
+                    <p>Welcome back {this.state.name}!</p>
                     <p>You have a regular account</p>
                 </div>
             );         
