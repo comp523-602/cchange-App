@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import CreateAccount from './createAccount';
 import Login from './login';
-import {Router, Link, IndexRoute, Route, browserHistory} from 'react-router';
-
 class App extends React.Component {
   render() {
     return (

@@ -57,14 +57,14 @@ export default class Profile extends Component {
         var isCharity = false;
         var info = document.cookie;
         info = info.split(";");
-        this.state.token = info[0].substring(6,);
-        this.state.name = info[1].substring(7,);
+        this.setState({token : info[0].substring(6,)});
+        this.setState({name: info[1].substring(7,)});
 
         //if charity information is returned from AJAX response
         if(info[2] != null) { 
             isCharity = true;
-            this.state.charityName = info[2].substring(7,);
-            this.state.charityDescr = info[3].substring(7,);
+            this.setState({charityName: info[2].substring(7,)});
+            this.setState({charityDescr: info[3].substring(7,)});
         }
 
         if(isCharity) {
