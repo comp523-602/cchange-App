@@ -20,7 +20,7 @@ export default class Profile extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
     
-    //3 handle functions are only available to charity accounts
+    //3 handle functions that are only available to charity accounts
     handleCharityName(e) {
         this.setState({charityName: e.target.value});
     }
