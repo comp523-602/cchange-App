@@ -77,15 +77,6 @@ export default class Login extends Component {
           </form>
           <a id="linkToAccCreation" href="#" onClick={this.renderAccCreation}>Don't have an account?</a>
         </div>
-        <div className="info">
-          <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br/><br/>sed do eiusmod tempor incididunt ut <br/>
-          labore et dolore magna aliqua. Ut enim ad minim veniam, <br/><br/>quis nostrud exercitation ullamco laboris nisi<br/><br/>
-          ut aliquip ex ea commodo consequat. Duis aute irure dolor in <br/><br/>reprehenderit in voluptate velit esse cillum <br/><br/>
-          dolore eu fugiat nulla pariatur. <br/>
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui <br/><br/>officia deserunt mollit anim id est laborum
-          </p>
-        </div>
       </div>
     );
   }
