@@ -4,7 +4,7 @@ import '../index.css';
 import CreateAccount from './createAccount';
 import Profile from './profile';
 import $ from 'jquery';
-
+//new login class
 export default class Login extends Component {
     constructor(props) {
     super(props);
