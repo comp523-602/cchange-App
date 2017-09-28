@@ -56,7 +56,7 @@ export default class CreateAccount extends Component {
       console.log(this.state.username + " " + this.state.email + " " + this.state.password);
       console.log('Attempting to send');
 
-      if(this.state.charityToken.length === 0) {
+      if(this.state.charityToken.length == 0) {
         $.ajax({
           type: "POST",
           url: "//api.cchange.ga/user.create",
