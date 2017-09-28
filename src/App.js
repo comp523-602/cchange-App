@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import CreateAccount from './createAccount';
-import Login from './login';
+import CreateAccount from './components/createAccount';
+import Login from './components/login';
 import {Router, Link, IndexRoute, Route, browserHistory} from 'react-router';
 
 class App extends React.Component {
@@ -16,7 +16,7 @@ class App extends React.Component {
     )
     //tarheel shared reader/17 on github
   }
-  
+
   goToLogin() {
     ReactDOM.render(<Login/>, document.getElementById("root"));
   }

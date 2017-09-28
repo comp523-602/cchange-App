@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import '../index.css';
 import CreateAccount from './createAccount';
 import Profile from './profile';
 import $ from 'jquery';
@@ -20,13 +20,13 @@ export default class Login extends Component {
   renderAccCreation() {
     ReactDOM.render(<CreateAccount />, document.getElementById('root'));
   }
-  
+
   handleLogin(e) {
     e.preventDefault();
     console.log("email and password");
     console.log(this.state.email + " " + this.state.password);
     console.log('Attempting to send');
-    
+
     $.ajax({
       type: "POST",
       url: "//api.cchange.ga/user.login",
@@ -40,15 +40,15 @@ export default class Login extends Component {
         console.log(data);
         document.cookie = "token=" + data.token;
         document.cookie = "uname=" + data.user.name;
-        
+
         //if charity information is returned from AJAX response
         if(data.charity != null) {
-          document.cookie = "cname=" + data.charity.name;        
+          document.cookie = "cname=" + data.charity.name;
           document.cookie = "cdesc=" + data.charity.description;
         }
         ReactDOM.render(<Profile/>, document.getElementById("root"));
       }
-      
+
     });
   }
 
@@ -66,11 +66,11 @@ export default class Login extends Component {
           <h1>welcome to cchange!</h1>
           <form onSubmit={this.handleLogin}>
             <h3>email</h3>
-            <input type="text" id="emailTBox" name="email" placeholder="email" 
+            <input type="text" id="emailTBox" name="email" placeholder="email"
               value={this.state.email} onChange={this.handleEmail}/>
-        
+
             <h3>password</h3>
-            <input type="password" id="passTBox" name="password" placeholder="password" 
+            <input type="password" id="passTBox" name="password" placeholder="password"
               value={this.state.password} onChange={this.handlePassword}/>
 
             <input type="submit" value = "login"/>
