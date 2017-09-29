@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import '../index.css';
+import './index.css';
 import CreateAccount from './createAccount';
 import Profile from './profile';
 import $ from 'jquery';
 //new login class
+
 export default class Login extends Component {
     constructor(props) {
     super(props);
@@ -68,11 +69,9 @@ export default class Login extends Component {
             <h3>email</h3>
             <input type="text" id="emailTBox" name="email" placeholder="email"
               value={this.state.email} onChange={this.handleEmail}/>
-
             <h3>password</h3>
             <input type="password" id="passTBox" name="password" placeholder="password"
               value={this.state.password} onChange={this.handlePassword}/>
-
             <input type="submit" value = "login"/>
           </form>
           <a id="linkToAccCreation" href="#" onClick={this.renderAccCreation}>Don't have an account?</a>

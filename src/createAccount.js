@@ -22,9 +22,7 @@ export default class CreateAccount extends Component {
         this.handlePassword = this.handlePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCharityToken = this.handleCharityToken.bind(this);
-        this.handleCharityName = this.handleCharityName.bind(this);
-        this.handleCharityDescription = this.handleCharityDescription.bind(this);
-    
+        this.handleCharityName = this.handleCharityName.bind(this);    
     }
     handleUsername(e) {
       this.setState({username: e.target.value});
@@ -85,7 +83,7 @@ export default class CreateAccount extends Component {
             'email': this.state.email,
             'password': this.state.password,
             "charityToken": this.state.charityToken,
-            "charityName": this.state.charityName
+            "charityName": this.state.charityName,
           }),
           success: function (data, status) {
             console.log(data);

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import CreateAccount from './components/createAccount';
-import Login from './components/login';
+import CreateAccount from './createAccount';
+import Login from './login';
 import {Router, Link, IndexRoute, Route, browserHistory} from 'react-router';
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
     //render homepage
@@ -14,7 +14,6 @@ class App extends React.Component {
       <button onClick={this.goToAccountCreation}>Create account</button>
     </div>
     )
-    //tarheel shared reader/17 on github
   }
 
   goToLogin() {
