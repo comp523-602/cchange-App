@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Profile from './profile';
-import $ from 'jquery';
+import $ from 'jquery'
 
 export default class CreateAccount extends Component {
     constructor(props) {

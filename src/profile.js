@@ -75,6 +75,18 @@ export default class Profile extends Component {
                 this.setState({
                     uploadedFileCloudinaryUrl: response.body.secure_url
                 });
+                $.ajax({
+                    type: "POST",
+                    url: "//api.cchange.ga/charity.logo",
+                    contentType: 'application/json',
+                    headers: { "Authorization":  this.state.token },
+                    data: JSON.stringify({
+                      'logo': this.state.uploadedFileCloudinaryUrl,
+                    }),
+                    success: function (data, status) {
+                      console.log(data);
+                    }
+                });
             }
         });
     }
