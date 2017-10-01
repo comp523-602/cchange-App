@@ -48,6 +48,9 @@ export default class Login extends Component {
           document.cookie = "cdesc=" + data.charity.description;
         }
         ReactDOM.render(<Profile/>, document.getElementById("root"));
+      },
+      error: function(data, status) {
+        alert(data.responseJSON.message);
       }
 
     });
