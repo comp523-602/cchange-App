@@ -84,7 +84,10 @@ export default class Profile extends Component {
                       'logo': this.state.uploadedFileCloudinaryUrl,
                     }),
                     success: function (data, status) {
-                      console.log(data);
+                        console.log(data);
+                    },
+                    error: function(data, status) {
+                        console.log(data.responseJSON.message);
                     }
                 });
             }
@@ -114,7 +117,6 @@ export default class Profile extends Component {
     }
 
     render() {
-
         if(this.state.isCharity) {
             return(
                 <div className="user">
@@ -151,8 +153,22 @@ export default class Profile extends Component {
         else {
             return(
                 <div className="user">
-                    <p>Welcome back {this.state.name}!</p>
+                    <p>Welcome {this.state.name}!</p>
                     <p>You have a regular account</p>
+                    <Dropzone
+                            onDrop={this.onImageDrop.bind(this)}
+                            multiple={false}
+                            accept="image/*"
+                            >
+                            <div>Drop or select your files here</div>
+                    </Dropzone>
+                    <div>
+                        {this.state.uploadedFileCloudinaryUrl === '' ? null :
+                            <div>
+                                <img src={this.state.uploadedFileCloudinaryUrl} />
+                                <p>{this.state.uploadedFileCloudinaryUrl}</p>
+                            </div>}
+                    </div>
                 </div>
             );         
         }
