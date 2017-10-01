@@ -1,5 +1,0 @@
-CreateAccount example:
-
-```js
-<CreateAccount/>
-```
