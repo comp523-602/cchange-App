@@ -4,6 +4,7 @@ import './App.css';
 import CreateAccount from './createAccount';
 import Login from './login';
 import {Router, Link, IndexRoute, Route, browserHistory} from 'react-router';
+import { observable, action, computed } from 'mobx';
 
 class App extends Component {
   render() {
@@ -15,7 +16,7 @@ class App extends Component {
     </div>
     )
   }
-
+  
   goToLogin() {
     ReactDOM.render(<Login/>, document.getElementById("root"));
   }
@@ -23,6 +24,20 @@ class App extends Component {
   goToAccountCreation() {
     ReactDOM.render(<CreateAccount/>, document.getElementById("root"));
   }
+  /*
+  @observable view = 'home';
+  
+  @computed getCurrentPath() {
+    return '/' + this.view + '/';
+  }
+
+  @observable doRoute() {
+    //look at Tarheel reader for routing
+    //use Store to store states like token, user, and the like
+    
+  }
+  */
 }
+
 
 export default App;

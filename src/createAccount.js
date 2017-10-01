@@ -69,7 +69,10 @@ export default class CreateAccount extends Component {
             document.cookie = "token=" + data.token;
             document.cookie = "uname=" + data.user.name;
             ReactDOM.render(<Profile/>, document.getElementById("root"));
-            }
+            },
+          error: function(data, status) {
+            alert(data.responseJSON.message);
+          }
         });
       }
       
@@ -90,8 +93,12 @@ export default class CreateAccount extends Component {
             document.cookie = "token=" + data.token;
             document.cookie = "uname=" + data.user.name;
             document.cookie = "cname=" + data.charity.name;
+            document.cookie = "cdesc=" + "Enter a description for " + data.charity.name;
             ReactDOM.render(<Profile/>, document.getElementById("root"));
-            }
+            },
+          error: function(data, status) {
+            alert(data.responseJSON.message);            
+          }
         });
       }
     }
@@ -107,13 +114,13 @@ export default class CreateAccount extends Component {
               <h1>welcome to cchange</h1>
               <form id="accCreateForm" onSubmit={this.handleSubmit}>
                   <h3>username</h3>
-                  <input type="text" id="nameBox" name = "username" placeholder="username" 
+                  <input type="text" id="nameBox" name = "username" placeholder="Can only contain letters and numbers" 
                     value={this.state.username} onChange={this.handleUsername} />
                   <h3>email</h3>
-                  <input type="text" id="emailBox" name = "email" placeholder="email" 
+                  <input type="text" id="emailBox" name = "email" placeholder="Must be a valid email" 
                     value={this.state.email} onChange={this.handleEmail} />
                   <h3>password</h3>
-                  <input type="password" id="passBox" name = "password" placeholder="password" 
+                  <input type="password" id="passBox" name = "password" placeholder="At least one number and >= 8 characters" 
                     value={this.state.password} onChange={this.handlePassword} />
                   <br/>
                   <h3>charity token</h3>

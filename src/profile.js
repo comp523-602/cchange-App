@@ -108,6 +108,7 @@ export default class Profile extends Component {
             }),
             success: function (data, status) {
               console.log(data);
+              //add jQuery to remove strings in text box after submit
             }
         });
     }
