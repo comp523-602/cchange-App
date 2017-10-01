@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Profile from './profile';
+import Login from './login';
 import $ from 'jquery'
 
 export default class CreateAccount extends Component {
@@ -54,6 +55,8 @@ export default class CreateAccount extends Component {
       console.log(this.state.username + " " + this.state.email + " " + this.state.password);
       console.log('Attempting to send');
 
+      //if the user is not a charity
+      //and has not pasted a token
       if(this.state.charityToken.length == 0) {
         $.ajax({
           type: "POST",
@@ -64,6 +67,7 @@ export default class CreateAccount extends Component {
             'email': this.state.email,
             'password': this.state.password,
           }),
+          //set cookies for login
           success: function (data, status) {
             console.log(data);
             document.cookie = "token=" + data.token;
@@ -88,6 +92,7 @@ export default class CreateAccount extends Component {
             "charityToken": this.state.charityToken,
             "charityName": this.state.charityName,
           }),
+          //set cookies for login
           success: function (data, status) {
             console.log(data);
             document.cookie = "token=" + data.token;
@@ -104,7 +109,7 @@ export default class CreateAccount extends Component {
     }
 
     renderLogin() {
-      ReactDOM.render(<App />, document.getElementById('root'));
+      ReactDOM.render(<Login />, document.getElementById('root'));
     }
     
     render() {
@@ -133,15 +138,6 @@ export default class CreateAccount extends Component {
                   <input type="submit" id="btnCreateAcc" value="submit"/>
               </form>
               <a id="linkToLogin" href="#" onClick={this.renderLogin}>Already have an account?</a>
-              </div>
-            <div className="info">
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br/><br/>sed do eiusmod tempor incididunt ut <br/>
-            labore et dolore magna aliqua. Ut enim ad minim veniam, <br/><br/>quis nostrud exercitation ullamco laboris nisi<br/><br/>
-            ut aliquip ex ea commodo consequat. Duis aute irure dolor in <br/><br/>reprehenderit in voluptate velit esse cillum <br/><br/>
-            dolore eu fugiat nulla pariatur. <br/>
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui <br/><br/>officia deserunt mollit anim id est laborum
-            </p>
           </div>
         </div>
       );
