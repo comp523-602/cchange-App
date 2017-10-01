@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import CreateAccount from './createAccount';
-import Login from './login';
+import CreateAccount from './components/createAccount';
+import Login from './components/login';
 import {Router, Link, IndexRoute, Route, browserHistory} from 'react-router';
 import { observable, action, computed } from 'mobx';
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import '../index.css';
 import $ from 'jquery';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';

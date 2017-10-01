@@ -47,6 +47,9 @@ export default class Login extends Component {
           document.cookie = "cdesc=" + data.charity.description;
         }
         ReactDOM.render(<Profile/>, document.getElementById("root"));
+      },
+      error: function(data, status) {
+        alert(data.responseJSON.message);
       }
 
     });
@@ -68,11 +71,9 @@ export default class Login extends Component {
             <h3>email</h3>
             <input type="text" id="emailTBox" name="email" placeholder="email"
               value={this.state.email} onChange={this.handleEmail}/>
-
             <h3>password</h3>
             <input type="password" id="passTBox" name="password" placeholder="password"
               value={this.state.password} onChange={this.handlePassword}/>
-
             <input type="submit" value = "login"/>
           </form>
           <a id="linkToAccCreation" href="#" onClick={this.renderAccCreation}>Don't have an account?</a>
