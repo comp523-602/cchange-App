@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import '../index.css';
+import './index.css';
 import CreateAccount from './createAccount';
 import Profile from './profile';
 import $ from 'jquery';
@@ -47,6 +47,9 @@ export default class Login extends Component {
           document.cookie = "cdesc=" + data.charity.description;
         }
         ReactDOM.render(<Profile/>, document.getElementById("root"));
+      },
+      error: function(data, status) {
+        alert(data.responseJSON.message);
       }
 
     });
@@ -68,23 +71,12 @@ export default class Login extends Component {
             <h3>email</h3>
             <input type="text" id="emailTBox" name="email" placeholder="email"
               value={this.state.email} onChange={this.handleEmail}/>
-
             <h3>password</h3>
             <input type="password" id="passTBox" name="password" placeholder="password"
               value={this.state.password} onChange={this.handlePassword}/>
-
             <input type="submit" value = "login"/>
           </form>
           <a id="linkToAccCreation" href="#" onClick={this.renderAccCreation}>Don't have an account?</a>
-        </div>
-        <div className="info">
-          <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br/><br/>sed do eiusmod tempor incididunt ut <br/>
-          labore et dolore magna aliqua. Ut enim ad minim veniam, <br/><br/>quis nostrud exercitation ullamco laboris nisi<br/><br/>
-          ut aliquip ex ea commodo consequat. Duis aute irure dolor in <br/><br/>reprehenderit in voluptate velit esse cillum <br/><br/>
-          dolore eu fugiat nulla pariatur. <br/>
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui <br/><br/>officia deserunt mollit anim id est laborum
-          </p>
         </div>
       </div>
     );
