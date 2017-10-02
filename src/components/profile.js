@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import '../index.css';
+import CreateCampaign from './createCampaign';
 import $ from 'jquery';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
@@ -21,7 +22,7 @@ export default class Profile extends Component {
             uploadedFileCloudinaryUrl: null,
         };
 
-        this.handleCharityName = this.handleCharityName.bind(this);        
+        this.handleCharityName = this.handleCharityName.bind(this);
         this.handleCharityDescription = this.handleCharityDescription.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -35,7 +36,7 @@ export default class Profile extends Component {
         });
 
         //if charity information is returned from AJAX response
-        if(parse_info[2] != null) { 
+        if(parse_info[2] != null) {
             this.setState({
                 isCharity: true,
                 charityName: parse_info[2].substring(7,),
@@ -48,7 +49,7 @@ export default class Profile extends Component {
     handleCharityName(e) {
         this.setState({charityName: e.target.value});
     }
-    
+
     handleCharityDescription(e) {
         this.setState({charityDescr: e.target.value});
     }
@@ -57,7 +58,7 @@ export default class Profile extends Component {
         this.setState({
             uploadedFile: files[0]
         });
-        
+
         this.handleImageUpload(files[0]);
     }
 
@@ -93,7 +94,7 @@ export default class Profile extends Component {
             }
         });
     }
-    
+
     //AJAX POST request ran after submit button click
     //to update charity information on the server
     handleChange (e) {
@@ -116,6 +117,22 @@ export default class Profile extends Component {
         });
     }
 
+    renderCampaign() {
+      ReactDOM.render(<CreateCampaign />, document.getElementById('root'));
+    }
+
+    getCampaigns() {
+      $.ajax({
+        type: "POST",
+        url: "//api.cchange.ga/campaigns",
+        contentType: 'application/json',
+        success: function(data, status) {
+          console.log(data);
+          return data;
+        }
+      });
+    }
+
     render() {
         if(this.state.isCharity) {
             return(
@@ -125,9 +142,9 @@ export default class Profile extends Component {
                     <p>{this.state.charityDescr}</p>
                     <p>Edit your charity's description below</p>
                     <form onSubmit={this.handleChange}>
-                        <input type="text" id="changeNameID" placeholder="Edit your charity's name" 
+                        <input type="text" id="changeNameID" placeholder="Edit your charity's name"
                             onChange={this.handleCharityName}/>
-                        <input type="text" id="changeDescID" placeholder="Edit your charity's description" 
+                        <input type="text" id="changeDescID" placeholder="Edit your charity's description"
                             onChange={this.handleCharityDescription}/>
                         <input type="submit" value="Update info"/>
                         <br/>
@@ -146,6 +163,7 @@ export default class Profile extends Component {
                                 <p>{this.state.uploadedFileCloudinaryUrl}</p>
                             </div>}
                     </div>
+                    <p>{this.getCampaigns}</p>
                 </div>
             );
         }
@@ -170,7 +188,7 @@ export default class Profile extends Component {
                             </div>}
                     </div>
                 </div>
-            );         
+            );
         }
 
     }
