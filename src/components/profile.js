@@ -5,6 +5,7 @@ import CreateCampaign from './createCampaign';
 import $ from 'jquery';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
+import PropTypes from 'prop-types';
 
 const CLOUDINARY_UPLOAD_PRESET = 'kajpdwj4';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/cchange/image/upload';
@@ -26,7 +27,9 @@ export default class Profile extends Component {
         this.handleCharityDescription = this.handleCharityDescription.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-
+    /**
+     * After the component is mounted, parse cookie strings and set the state
+     */
     componentDidMount() {
         const info = document.cookie;
         const parse_info = info.split(";");
@@ -46,14 +49,30 @@ export default class Profile extends Component {
     }
 
     //3 handle functions that are only available to charity accounts
+    /**
+     * Update the state of 'charityName'
+     * @param {*} e
+     * @public
+     */
     handleCharityName(e) {
         this.setState({charityName: e.target.value});
     }
 
+    /**
+     * Update the state of 'charityDescr'
+     * @param {*} e
+     * @public
+     */
     handleCharityDescription(e) {
         this.setState({charityDescr: e.target.value});
     }
 
+    /**
+     * Waits for an image to be selected and updates the state of 'uploadedFile'
+     * Once chosen, call handleImageUpload to upload the file
+     * @param {*} files
+     * @public
+     */
     onImageDrop(files) {
         this.setState({
             uploadedFile: files[0]
@@ -62,6 +81,13 @@ export default class Profile extends Component {
         this.handleImageUpload(files[0]);
     }
 
+    /**
+     * Makes the post request to to the cloudinary server
+     * Success: print upload information to console
+     * Error: print error message to console
+     * @param {*} file
+     * @public
+     */
     handleImageUpload(file) {
         let upload = request.post(CLOUDINARY_UPLOAD_URL)
              .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
@@ -97,6 +123,12 @@ export default class Profile extends Component {
 
     //AJAX POST request ran after submit button click
     //to update charity information on the server
+    /**
+     * On submit, make a POST request to the API to
+     * change the charity name and/or description
+     * @param {*} e
+     * @public
+     */
     handleChange (e) {
         e.preventDefault();
         console.log(this.state.token);

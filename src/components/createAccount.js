@@ -4,6 +4,7 @@ import '../index.css';
 import Profile from './profile';
 import Login from './login';
 import $ from 'jquery'
+import PropTypes from 'prop-types';
 
 export default class CreateAccount extends Component {
     constructor(props) {
@@ -24,30 +25,77 @@ export default class CreateAccount extends Component {
         this.handleCharityToken = this.handleCharityToken.bind(this);
         this.handleCharityName = this.handleCharityName.bind(this);    
     }
+  /**
+   * Update the state of 'username'
+   * @param {*} e 
+   * @public
+   */
     handleUsername(e) {
       this.setState({username: e.target.value});
     }
 
+   /**
+    * Update the state of 'email'
+    * @param {*} e 
+    * @public
+    */
     handleEmail(e) {
       this.setState({email: e.target.value});
     }
 
+   /**
+    * Update the state of 'password'
+    * @param {*} e 
+    * @public
+    */
     handlePassword(e) {
       this.setState({password: e.target.value});
     }
 
+   /**
+    * Update the state of 'charityToken'
+    * @param {*} e
+    * @public 
+    */    
     handleCharityToken(e) {
       this.setState({charityToken: e.target.value});
     }
 
+   /**
+    * Update the state of 'charityName'
+    * @param {*} e
+    * @public 
+    */    
     handleCharityName(e) {
       this.setState({charityName: e.target.value});
     }
 
+   /**
+    * Update the state of 'charityDescription'
+    * @param {*} e
+    * @public 
+    */    
     handleCharityDescription(e) {
       this.setState({charityDescription: e.target.value});
     }
 
+   /**
+    * Submit account information in a POST request to the API
+    * If there is no charity token, then it is a regular user.
+    * The data in the request is 'name', 'email', 'password' - all take strings
+    * Success: Print account information to the console, 
+    * set cookies with account information, and render the Profile component
+    * Error: alert the response from the server related to the error
+    * 
+    * If there is a charity token, then it's a charity account.
+    * The data in the request is 'name', 'email', password', 'charityToken',
+    * and 'charityName' - all take strings
+    * Success: Print account information to the console,
+    * set cookies with account information, and render the Profile component
+    * Error: alert the response from the server related to the error
+    * @param {*} e
+    * @public 
+    */    
     handleSubmit(e) {
       e.preventDefault();
       console.log("username email and password");

@@ -16,14 +16,21 @@ class App extends Component {
     </div>
     )
   }
-  
+  /**
+   * Renders the login component (login.js)
+   */
   goToLogin() {
     ReactDOM.render(<Login/>, document.getElementById("root"));
   }
 
+  /**
+   * Renders the create account component (createAccount.js)
+   */
   goToAccountCreation() {
     ReactDOM.render(<CreateAccount/>, document.getElementById("root"));
   }
+
+  
   /*
   @observable view = 'home';
   

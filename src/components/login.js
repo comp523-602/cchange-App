@@ -4,6 +4,7 @@ import '../index.css';
 import CreateAccount from './createAccount';
 import Profile from './profile';
 import $ from 'jquery';
+import PropTypes from 'prop-types';
 
 export default class Login extends Component {
     constructor(props) {
@@ -17,10 +18,20 @@ export default class Login extends Component {
     this.handlePassword = this.handlePassword.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
   }
+  /**
+   * Renders the create account component (createAccount.js)
+   */
   renderAccCreation() {
     ReactDOM.render(<CreateAccount />, document.getElementById('root'));
   }
 
+  /**
+   * Makes an AJAX post request to the API.
+   * Success: Use login information as cookies and render the profile component (profile.js) 
+   * Error: Display error message related to the input (incorrect password/email)
+   * @param {*} e
+   * @public  
+   */
   handleLogin(e) {
     e.preventDefault();
     console.log("email and password");
@@ -55,9 +66,20 @@ export default class Login extends Component {
     });
   }
 
+  /**
+   * Update the state of 'email'
+   * @param {*} e
+   * @public 
+   */
   handleEmail(e) {
     this.setState({email: e.target.value});
   }
+
+  /**
+   * Update the state of 'password'
+   * @param {*} e
+   * @public  
+   */
   handlePassword(e) {
     this.setState({password: e.target.value});
   }
