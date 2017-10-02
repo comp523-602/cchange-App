@@ -9,6 +9,7 @@
     "history": "^4.7.2",
     "jquery": "^3.2.1",
     "mobx": "^3.3.0",
+    "prop-types": "^15.6.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-dropzone": "^4.1.3",
