@@ -188,6 +188,7 @@ export default class Profile extends Component {
                             <div>Drop or select your files here</div>
                         </Dropzone>
                     </form>
+                    <p><a id="linkToCampaignCreation" href="#" onClick={this.renderCampaign}>Create a Campaign</a></p>
                     <div>
                         {this.state.uploadedFileCloudinaryUrl === '' ? null :
                             <div>

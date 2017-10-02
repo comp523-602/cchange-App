@@ -50,7 +50,7 @@ export default class CreateCampaign extends Component {
 
   handleChange (e) {
     e.preventDefault();
-
+    console.log(this.state.campaignDesc);
     $.ajax({
       type: "POST",
       url: "//api.cchange.ga/campaign.create",
@@ -58,7 +58,7 @@ export default class CreateCampaign extends Component {
       headers: { "Authorization": this.state.token },
       data: JSON.stringify({
         'name': this.state.campaignName,
-        'description': this.state.campaignDescription,
+        'description': this.state.campaignDesc,
       }),
       success: function(data, status) {
         console.log(data);
